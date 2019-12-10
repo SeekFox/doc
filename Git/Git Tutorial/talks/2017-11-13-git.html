@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>Git Tutorial</title>
+    <link rel="stylesheet" type="text/css" href="../css/mermaid.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/katex.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/talk.css">
+    <script src="../scripts/jquery.min.js"></script>
+    <script src="../scripts/bootstrap.min.js"></script>
+    <script src="../scripts/katex.min.js"></script>
+    <script src="../scripts/auto-render.min.js"></script>
+</head>
+
+<body>
+    <section id="title">
+        <div class="middle center">
+
+
+            <div class="title">
+                Git Tutorial
+            </div>
+            
+
+            <div class="author">
+                François-Xavier du Moutier
+            </div>
+
+
+            <div class="date">
+                2017-11-13
+            </div>
+        </div>
+    </section>
+    <section id="git" class="slide level1">
+<h1>GIT</h1>
+<figure>
+<img src="../images/2017-11-13-git/git_2x.png" alt="If that doesn’t fix it, git.txt contains the phone number of a friend of mine who understands git. Just wait through a few minutes of It’s really pretty simple, just think of branches as… and eventually you’ll learn the commands that will fix everything." style="width:40.0%" /><figcaption><em>If that doesn’t fix it, git.txt contains the phone number of a friend of mine who understands git. Just wait through a few minutes of ‘It’s really pretty simple, just think of branches as…’ and eventually you’ll learn the commands that will fix everything.</em></figcaption>
+</figure>
+</section>
+<section id="from-homemade-versionning-to-dvcs" class="slide level1">
+<h1>From homemade versionning to DVCS</h1>
+<h2 id="homemade-versionning">Homemade versionning</h2>
+<figure>
+<img src="../images/2017-11-13-git/Strip-Cest-lhopital-qui-se-fout-englishfinal.jpg" style="width:70.0%" />
+</figure>
+</section>
+<section id="from-homemade-versions-to-dvcs" class="slide level1">
+<h1>From homemade versions to DVCS</h1>
+<h2 id="local-versionning">Local versionning</h2>
+<figure>
+<img src="../images/2017-11-13-git/local-versionning.png" />
+</figure>
+</section>
+<section id="from-homemade-versionning-to-dvcs-1" class="slide level1">
+<h1>From homemade versionning to DVCS</h1>
+<h2 id="centralized-versionning-control-system">Centralized Versionning Control System</h2>
+<figure>
+<img src="../images/2017-11-13-git/central-versionning.png" />
+</figure>
+<p>Example : svn, cvs</p>
+</section>
+<section id="from-homemade-versionning-to-dvcs-2" class="slide level1">
+<h1>From homemade versionning to DVCS</h1>
+<h2 id="distributed-versionning-control-system">Distributed Versionning Control System</h2>
+<figure>
+<img src="../images/2017-11-13-git/distributed-versionning.png" style="width:55.0%" />
+</figure>
+<p>Example : git, mercurial, bazar…</p>
+</section>
+<section id="from-homemade-versionning-to-dvcs-3" class="slide level1">
+<h1>From homemade versionning to DVCS</h1>
+<h2 id="remote-git-server">Remote git server</h2>
+<h3 id="hosted-by-others">Hosted by others</h3>
+<ul>
+<li><strong>github.com</strong></li>
+<li>bitbucket.com</li>
+<li>git.framasoft.com</li>
+</ul>
+<h3 id="home-hosted">Home hosted</h3>
+<ul>
+<li>gitlab</li>
+<li>gitea</li>
+<li><strong>bare repository (IBENS using that)</strong></li>
+</ul>
+</section>
+<section id="why-using-a-distributed-version-control-system" class="slide level1">
+<h1>Why using a Distributed Version Control System</h1>
+<ul>
+<li>Insure to always be able to have a working version of your project</li>
+<li>Change your code without being worry about breaking something</li>
+<li>Track your changes :
+<ul>
+<li>Go back to every step of development</li>
+<li>Find easily the origin of a bug</li>
+<li>Know who wrote what part of the code when</li>
+</ul></li>
+<li>Team work</li>
+<li>Use version even offline.</li>
+</ul>
+</section>
+<section id="why-git" class="slide level1">
+<h1>Why git</h1>
+<h3 id="pros">Pros</h3>
+<ul>
+<li>Robust: The linux kernel uses git !</li>
+<li>Loosing data is difficult :
+<ul>
+<li>Git does only add data, nothing is never removed, once in the system</li>
+</ul></li>
+</ul>
+<h3 id="cons">Cons</h3>
+<ul>
+<li>Sometime difficult to understand</li>
+<li>Confusing commands (checkout and reset)</li>
+</ul>
+</section>
+<section id="get-started" class="slide level1">
+<h1>Get Started</h1>
+<h2 id="install-command-line">Install Command line :</h2>
+<ul>
+<li>Linux: package manager</li>
+<li>MacOS: <a href="https://brew.sh/index_fr.html">Homebrew</a></li>
+<li>Windows: <a href="https://chocolatey.org/">Chocolatey</a></li>
+</ul>
+<h3 id="diff-gui">Diff Gui:</h3>
+<ul>
+<li>Meld</li>
+<li>VimDiff</li>
+<li>Diffuse</li>
+</ul>
+</section>
+<section id="get-started-1" class="slide level1">
+<h1>Get Started</h1>
+<h2 id="graphical-user-interface">Graphical User Interface</h2>
+<h3 id="free-and-open-source-software"> Free and Open Source Software:</h3>
+<ul>
+<li><p>gitg</p></li>
+<li><p>github-desktop (Very early: no tree view, also too easy to make mistakes )</p></li>
+</ul>
+<h3 id="proprietary-free">Proprietary (Free)</h3>
+<ul>
+<li>gitkraken (need to register, but very good)</li>
+<li>SourceTree</li>
+</ul>
+</section>
+<section id="get-started-2" class="slide level1">
+<h1>Get Started</h1>
+<ul>
+<li>Open a terminal</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">mkdir</span> ~/repos
+<span class="bu">cd</span> ~/repos <span class="co"># We will stay in this folder for the whole tutorial</span></code></pre></div>
+<h2 id="configure-git">Configure git</h2>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> config --global user.name <span class="st">&quot;FirstName LastName&quot;</span> 
+<span class="fu">git</span> config --global user.email <span class="st">&quot;mymail@provider.fr&quot;</span>
+<span class="fu">git</span> config --global merge.tool meld <span class="co"># or vimdiff3</span>
+<span class="fu">git</span> config --global diff.tool meld <span class="co"># or vimdiff</span>
+<span class="fu">git</span> config --global core.editor vim <span class="co"># emacs or sublimetext or atom or notepad++ or whatever is install !</span></code></pre></div>
+<h2 id="configure-ssh">Configure ssh</h2>
+<p>Remote connection and authentication [Prefered method]:</p>
+<div class="sourceCode"><pre class="sourceCode next bash"><code class="sourceCode bash"><span class="fu">ssh-keygen</span> <span class="co"># Generate a public key</span>
+<span class="ex">tree</span> ~/.ssh
+<span class="fu">cat</span> ~/.ssh/id_rsa.pub <span class="co"># To put on github</span></code></pre></div>
+</section>
+<section id="get-started-3" class="slide level1">
+<h1>Get started</h1>
+<h2 id="git-init">git init</h2>
+<p>I’m starting a new project, i want to start versionning from the beggining (Great idea)</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> init <span class="op">&lt;</span>project name<span class="op">&gt;</span>
+<span class="bu">cd</span> <span class="op">&lt;</span>project name<span class="op">&gt;</span></code></pre></div>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> init mynewproject
+<span class="bu">cd</span> mynewproject</code></pre></div>
+</section>
+<section id="get-started-4" class="slide level1">
+<h1>Get Started</h1>
+<h2 id="git-init-1">git init</h2>
+<p>I want start versionning an already existing project</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> <span class="op">&lt;</span>project name<span class="op">&gt;</span>
+<span class="fu">git</span> init
+<span class="fu">git</span> add <span class="op">&lt;</span>project useful files<span class="op">&gt;</span>
+<span class="fu">git</span> commit</code></pre></div>
+</section>
+<section id="get-started-5" class="slide level1">
+<h1>Get Started</h1>
+<h2 id="git-init-2">git init</h2>
+<p><strong>Example:</strong></p>
+<p>Lets make a dummy project:</p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">mkdir</span> myoldproject 
+<span class="bu">cd</span> myoldproject
+<span class="bu">echo</span> <span class="st">&quot;#!/usr/bin/env python3 \n print(&quot;</span>Python rocks<span class="st">&quot;)&quot;</span> <span class="op">&gt;</span> foobar.py
+<span class="bu">echo</span> <span class="st">&quot;module Main where \n main = putStrLn &quot;</span>Haskell FTW<span class="st">&quot;&quot;</span> <span class="op">&gt;</span> foobaz.hs
+<span class="fu">touch</span> ignoreme.java</code></pre></div>
+<p>Start versionning:</p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="bu">cd</span> myoldproject
+<span class="fu">git</span> init
+<span class="fu">git</span> add foobar.py foobaz.hs
+<span class="fu">git</span> commit</code></pre></div>
+</section>
+<section id="get-started-6" class="slide level1">
+<h1>Get Started</h1>
+<h2 id="git-clone">git clone</h2>
+<p>My project already exists on a remote server, I want to work with it</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> clone <span class="op">&lt;</span>remote project address<span class="op">&gt;</span>
+<span class="bu">cd</span> <span class="op">&lt;</span>projectname<span class="op">&gt;</span></code></pre></div>
+<p><strong>Example: </strong></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> clone git@github.com:lab-git-tutorial/myremoteproject.git
+<span class="ex">Cloning</span> into <span class="st">'myremoteproject'</span>...
+<span class="ex">remote</span>: Counting objects: 4, done.
+<span class="ex">remote</span>: Compressing objects: 100% (4/4), <span class="kw">done</span><span class="ex">.</span>
+<span class="ex">remote</span>: Total 4 (delta 0), <span class="ex">reused</span> 0 (delta 0)
+<span class="ex">Receiving</span> objects: 100% (4/4), <span class="kw">done</span><span class="ex">.</span>
+<span class="ex">Checking</span> connectivity... done.</code></pre></div>
+<p>link : https://github.com/lab-git-tutorial/myremoteproject.git</p>
+</section>
+<section id="local-modification" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="understanding-repository">Understanding repository</h2>
+<p>Here a project example:</p>
+<figure>
+<img src="../images/2017-11-13-git/git_working_directory_tree.png" />
+</figure>
+</section>
+<section id="local-modification-1" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="understanding-repository-1">Understanding repository</h2>
+<p>3 different copy</p>
+<figure>
+<img src="../images/2017-11-13-git/git_project.png" alt="git_project" style="width:55.0%" /><figcaption>git_project</figcaption>
+</figure>
+<ul>
+<li>Git Repository: all previous version of each file, organized in a tree</li>
+<li>Staging area OR index: File getting ready to be put into the repository</li>
+<li>Working directory : Files as you store them</li>
+</ul>
+</section>
+<section id="local-modification-2" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="git-status">git status</h2>
+<p>What the hell is in my repository ?</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> status</code></pre></div>
+<p>Use this command all the time !</p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="bu">cd</span> myremotproject
+<span class="fu">git</span> status </code></pre></div>
+<p><span class="next"><em>Nothing new</em></span></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">touch</span> ACKNOWLEDGMENT
+<span class="fu">git</span> status</code></pre></div>
+<p><span class="next"><em>the file is untracked</em></span></p>
+</section>
+<section id="local-modification-3" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="git-status-1">git status</h2>
+<p>It contains everything about working directory and staging area !</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$<span class="op">&gt;</span> <span class="fu">git</span> status
+<span class="ex">On</span> branch master
+<span class="ex">Your</span> branch is up-to-date with <span class="st">'origin/master'</span>.
+<span class="ex">Changes</span> to be committed:
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="kw">)</span>
+
+	<span class="ex">new</span> file:   .gitignore
+	<span class="ex">modified</span>:   index.html
+
+<span class="ex">Changes</span> not staged for commit:
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="kw">)</span>
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="kw">)</span>
+
+	<span class="ex">modified</span>:   style.css
+
+<span class="ex">Untracked</span> files:
+  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class="kw">)</span>
+
+	<span class="ex">remark.js</span>
+	<span class="ex">res/</span></code></pre></div>
+</section>
+<section id="local-modification-4" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="git-add">git add</h2>
+<figure>
+<img src="../images/2017-11-13-git/git_workflow_add.png" />
+</figure>
+</section>
+<section id="local-modification-5" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="git-add-1">git add</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> add <span class="op">&lt;</span>file<span class="op">&gt;</span></code></pre></div>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> add ACKNOWLEDGEMENT <span class="co"># Add the file</span>
+<span class="fu">git</span> status</code></pre></div>
+<p><span class="next"><em>look at the stagging area !</em></span></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="bu">echo</span> <span class="st">&quot;Thanks for Linus Torvalds, inventor of git, not such a git himself&quot;</span> <span class="op">&gt;&gt;</span> ACKNOWLEDGEMENT
+<span class="fu">git</span> status</code></pre></div>
+<p><span class="next"><em>stagging area is really an other copy of the file !</em></span></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> add ACKNOWLEDGEMENT
+<span class="bu">echo</span> <span class="st">&quot;This project is awesome&quot;</span> <span class="op">&gt;&gt;</span> README.md
+<span class="fu">git</span> status
+<span class="fu">git</span> add README.md <span class="co"># Staging modification</span>
+<span class="fu">git</span> status
+<span class="fu">mkdir</span> build
+<span class="fu">git</span> status</code></pre></div>
+<p><span class="next"><em>a folder can’t be tracked !</em></span></p>
+</section>
+<section id="local-modification-6" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="git-add-2">git add</h2>
+<h3 id="remove-file"> Remove file</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">rm</span> file1.md
+<span class="fu">git</span> status</code></pre></div>
+<p><span class="next"><em>Removal is detected</em></span></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> add file1.md 
+<span class="fu">git</span> status </code></pre></div>
+<p><span class="next"><em>What ? We added the remove :p :FacePalm:</em></span></p>
+<p><span class="next">the quicker way :</span></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> rm <span class="op">&lt;</span>file<span class="op">&gt;</span> <span class="co"># Remove the file and add this change to staging area</span></code></pre></div>
+</section>
+<section id="local-modification-7" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="git-add-3">git add</h2>
+<h3 id="move-file">Move file</h3>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">mv</span> file2.md file2moved.md
+<span class="fu">git</span> status
+<span class="fu">git</span> add file2.md
+<span class="fu">git</span> status
+<span class="fu">git</span> add file2moved.md
+<span class="fu">git</span> status <span class="co"># Git is so smart &lt;3</span></code></pre></div>
+<p><span class="next">the quicker way</span></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> mv <span class="op">&lt;</span>src<span class="op">&gt;</span> <span class="op">&lt;</span>dest<span class="op">&gt;</span> <span class="co"># mv a file and add this change to staging area</span></code></pre></div>
+<h3 id="see-further" class="next">See further :</h3>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> add -p</code></pre></div>
+</section>
+<section id="local-modification-8" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="git-checkout-file">git checkout – [file]</h2>
+<p><code>git rm</code> is not the invert operation of <code>git add</code>, what would it be ?</p>
+<figure>
+<img src="../images/2017-11-13-git/git_workflow_checkout.png" />
+</figure>
+</section>
+<section id="local-modification-9" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="git-checkout-file-1">git checkout – [file]</h2>
+<p>This command take the version of the file from the index and put it back in the working directory.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> status <span class="co"># Look at README.md</span>
+<span class="fu">git</span> checkout -- README.md 
+<span class="fu">git</span> status</code></pre></div>
+<p>Usage : when you want to remove all changes made since you last staged the file</p>
+<p><strong>Be careful ! this will erase your last changes ! </strong></p>
+</section>
+<section id="local-modification-10" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="git-commit">git commit</h2>
+<figure>
+<img src="../images/2017-11-13-git/git_workflow_commit.png" />
+</figure>
+</section>
+<section id="local-modification-11" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="git-commit---repository">git commit - repository</h2>
+<p>The git repository is a tree of versions (commit)</p>
+<figure>
+<img src="../images/2017-11-13-git/git_graph1.gif" />
+</figure>
+<ul>
+<li>using <code>git commit</code> we add a new version to the repository</li>
+<li>a commit is a snapshot of the staging area at given moment.</li>
+</ul>
+</section>
+<section id="local-modification-12" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="git-commit---content-of-a-commit">git commit - content of a commit</h2>
+<figure>
+<img src="../images/2017-11-13-git/commit-and-tree.png" style="width:60.0%" />
+</figure>
+<p>It contains :</p>
+<ul>
+<li>Meta-data: author, description</li>
+<li>Link to the previous commit</li>
+<li>The state of all files</li>
+</ul>
+</section>
+<section id="local-modification-13" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="git-commit-1">git commit</h2>
+<p>Make a new version:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> commit</code></pre></div>
+<p>It will open your text editor to ask for a description of the commit !</p>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> commit <span class="co"># Done ! all the staged file are committed !</span>
+<span class="fu">git</span> status</code></pre></div>
+<p><span class="next"><em>Whoooh is clean, but README is still there</em></span></p>
+<p><span class="next">Lets commit README.md :</span></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> add README.md
+<span class="fu">git</span> commit -m <span class="st">&quot;Added information about how good is this project&quot;</span>
+<span class="fu">git</span> status <span class="co"># Ok, we are good</span></code></pre></div>
+<p><span class="next">The quicker way :</span></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> commit -a <span class="co"># Add all modified file to staging area and commit them !</span></code></pre></div>
+</section>
+<section id="local-modification-14" class="slide level1">
+<h1> Local modification</h1>
+<h2 id="git-log">git log</h2>
+<p>Visualize previous version !</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> log</code></pre></div>
+<p>Even better</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> log --graph --decorate --pretty=oneline --abbrev-commit --all</code></pre></div>
+<p>Your want to keep it forever, Voilà !</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> config  --global alias.lola <span class="st">&quot;log --graph --decorate --pretty=oneline --abbrev-commit --all&quot;</span>
+<span class="fu">git</span> lola</code></pre></div>
+</section>
+<section id="local-modification-15" class="slide level1">
+<h1> Local modification</h1>
+<h2 id="git-diff">git diff</h2>
+<p>Look at difference between versions</p>
+<figure>
+<img src="../images/2017-11-13-git/git_workflow_diff.png" style="width:65.0%" />
+</figure>
+</section>
+<section id="local-modification-16" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="git-diff-1">git diff</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> lola
+<span class="fu">git</span> diff 92b284b 
+<span class="fu">git</span> difftool 92b284b
+<span class="bu">echo</span> <span class="st">&quot;Diff test&quot;</span> <span class="op">&gt;</span> README.md
+<span class="fu">git</span> diff
+<span class="fu">git</span> diff --cached
+<span class="fu">git</span> add README.md
+<span class="fu">git</span> diff
+<span class="fu">git</span> diff --cached</code></pre></div>
+<p>Here, GUI is useful !</p>
+</section>
+<section id="local-modification-17" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="git-reset">git reset</h2>
+<figure>
+<img src="../images/2017-11-13-git/git_workflow_reset.png" style="width:65.0%" />
+</figure>
+</section>
+<section id="local-modification-18" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="git-reset-1">git reset</h2>
+<p>How do I discard a file from staging area ? (unstage)</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> reset -- <span class="op">&lt;</span>file<span class="op">&gt;</span></code></pre></div>
+<p>How do I discard every files in staging area ? (unstage everything)</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> reset</code></pre></div>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="bu">echo</span> <span class="st">&quot;reset test&quot;</span> <span class="op">&gt;&gt;</span> README.md
+<span class="fu">git</span> status <span class="co"># README.md is modified</span>
+<span class="fu">git</span> add README.md 
+<span class="fu">git</span> status <span class="co"># README.md is stagged</span>
+<span class="fu">git</span> reset -- README.md
+<span class="fu">git</span> status <span class="co"># README.md is unstagged</span>
+<span class="fu">git</span> checkout -- README.md <span class="co"># no more modification</span></code></pre></div>
+</section>
+<section id="local-modification-19" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="git-reset-2">git reset</h2>
+<p>You make to make vanish a stagged modification from your repository your can do :</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> reset [-- <span class="op">&lt;</span>file<span class="op">&gt;</span>]
+<span class="fu">git</span> checkout [-- <span class="op">&lt;</span>file<span class="op">&gt;</span>]</code></pre></div>
+</section>
+<section id="local-modification-20" class="slide level1">
+<h1>Local modification</h1>
+<p>git is made to keep track of changes, and be able to revert them if needed, as we will see after.</p>
+<h2 id="best-practice">Best Practice :</h2>
+<ul>
+<li><p>Split commit by <em>Logical units of changes</em> : <span class="math inline">\(x\)</span> files modified to implement one behaviours</p></li>
+<li><p>Don’t mix <em>form</em> and <em>substance</em> in one commit : reindentation separate from code</p></li>
+<li><p>Don’t mix <em>background modifications</em> and <em>feature</em> : one commit to refactor you software</p></li>
+<li><p>in oder to support a feature and one commit to implement the feature.</p></li>
+<li><p>Make useful commit messages : explained what the patch does, not why you did it.</p></li>
+</ul>
+</section>
+<section id="local-modification-21" class="slide level1">
+<h1>Local modification</h1>
+<h2 id="workflow">Workflow</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> init foofoo <span class="co"># Creating repository</span>
+
+<span class="co">## I create and modify index.html and style.css ##</span>
+
+<span class="fu">git</span> add index.html style.css <span class="co"># I add file to the staging area</span>
+<span class="fu">git</span> status <span class="co">#I verify that the changes are indexed</span>
+<span class="fu">git</span> commit -m <span class="st">&quot;Initial commit&quot;</span> <span class="co"># Creating a first version</span>
+
+<span class="co">## Modify index.html style.ccs ##</span>
+
+<span class="fu">git</span> add index.html style.css <span class="co"># I want my files to be in the next commit</span>
+<span class="fu">git</span> status <span class="co"># Ok everything is staged</span>
+<span class="fu">git</span> diff --cached <span class="co"># What modification did I made ?</span>
+<span class="fu">git</span> reset -- style.css <span class="co"># Oh I'm not sure I want style.css committed along index.html, that is not logical</span>
+<span class="fu">git</span> checkout -- style.css <span class="co"># In my change are bad, lets dump them away</span>
+<span class="fu">git</span> status <span class="co"># What is still there ?</span>
+<span class="fu">git</span> commit <span class="co"># I commit index.html</span></code></pre></div>
+</section>
+<section id="local-modification-22" class="slide level1">
+<h1>Local modification</h1>
+<p>Lets try !</p>
+<ul>
+<li>Go into <code>myremoteproject</code></li>
+<li>Open src/index.html in your browser</li>
+<li>Play flappy bird :)</li>
+<li>Change the color of the square to green !</li>
+<li>Reduce score size to 18px</li>
+<li>Commit changes between each modification</li>
+</ul>
+</section>
+<section id="work-with-branch" class="slide level1">
+<h1>Work with branch</h1>
+<ul>
+<li>Work without disturbing other users</li>
+<li>Develop new functionnality will keeping a stable version</li>
+<li>Correct bugs</li>
+</ul>
+</section>
+<section id="work-with-branch-1" class="slide level1">
+<h1>Work with branch</h1>
+<h2 id="what-is-a-branch">What is a branch</h2>
+<p>A branch is an bookmark to a commit.</p>
+<figure>
+<img src="../images/2017-11-13-git/basic-branching-1.png" style="width:65.0%" />
+</figure>
+<p>By default you are using “master” branch !</p>
+<p><strong>Example</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> branch <span class="co"># List existing branch </span>
+<span class="ex">*</span> master <span class="co"># current branch</span>
+  <span class="ex">dev</span></code></pre></div>
+</section>
+<section id="work-with-branch-2" class="slide level1">
+<h1>Work with branch</h1>
+<h2 id="what-is-head">What is HEAD ?</h2>
+<p>Where your are looking at :</p>
+<figure>
+<img src="../images/2017-11-13-git/head-to-master-alone.png" style="width:65.0%" />
+</figure>
+<ul>
+<li>your are looking at the page (commit) where is the master bookmark</li>
+<li>HEAD is pointing on branch master</li>
+</ul>
+</section>
+<section id="work-with-branch-3" class="slide level1">
+<h1>Work with branch</h1>
+<h2 id="commit-in-the-context-of-branchs">Commit in the context of branchs</h2>
+<figure>
+<img src="../images/2017-11-13-git/git_graph_branch.gif" />
+</figure>
+<ul>
+<li>When creating a new version you move the current bookmark (branch)</li>
+</ul>
+</section>
+<section id="work-with-branch-4" class="slide level1">
+<h1>Work with branch</h1>
+<h2 id="create-and-switch-branch">Create and switch branch</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> branch <span class="op">&lt;</span>branch name<span class="op">&gt;</span> <span class="co"># Create a branch</span>
+<span class="fu">git</span> checkout <span class="op">&lt;</span>branch name<span class="op">&gt;</span> <span class="co"># Move HEAD to the branch / switch branch</span></code></pre></div>
+<figure>
+<img src="../images/2017-11-13-git/git_create_branch.gif" style="width:50.0%" />
+</figure>
+<p><strong>Example:</strong></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> branch french 
+<span class="fu">git</span> branch <span class="co"># 3 branch on your repository</span>
+<span class="fu">git</span> checkout french
+<span class="fu">git</span> branch <span class="co"># HEAD is pointing on french</span>
+<span class="fu">git</span> checkout master <span class="co"># HEAD is pointing on master</span></code></pre></div>
+</section>
+<section id="work-with-branch-5" class="slide level1">
+<h1>Work with branch</h1>
+<h2 id="switching-branch">Switching branch</h2>
+<p><strong>Example</strong></p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vim</span> src/game.html <span class="co"># Please translate game text to french and close the file</span>
+<span class="fu">git</span> branch </code></pre></div>
+<p><span class="next"><em>Damned ! I’m in master branch instead of french branch !</em></span></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> checkout french </code></pre></div>
+<p><span class="next"><em>Not working</em></span></p>
+<div class="next">
+<p>You must have a clean working directory and index to checkout a branch</p>
+<p><strong>Two solutions :</strong></p>
+<ul>
+<li>Commit all changes</li>
+<li>Stash</li>
+</ul>
+<p>Currently you want to put your modification into the french branch, so you don’t want to commit</p>
+</div>
+</section>
+<section id="work-with-branch-6" class="slide level1">
+<h1>Work with branch</h1>
+<h2 id="switching-branch-1">Switching branch</h2>
+<h3 id="git-stash">git stash</h3>
+<p>with stash, you can put aside your modifications.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> stash <span class="co"># Put aside modification on index and working directory</span>
+<span class="fu">git</span> stash pop <span class="co"># Get back my modifications (Replay)</span></code></pre></div>
+<p><strong>Example</strong></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> stash
+<span class="fu">git</span> status</code></pre></div>
+<p><span class="next"><em>Everything is clear</em></span></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> checkout french 
+<span class="fu">git</span> branch <span class="co"># I'm on french branch</span>
+<span class="fu">git</span> stash pop 
+<span class="fu">git</span> status <span class="co"># My modifications are back!</span>
+<span class="fu">git</span> commit <span class="co"># Committed on french branch !</span></code></pre></div>
+</section>
+<section id="working-with-branch" class="slide level1">
+<h1>Working with branch</h1>
+<h2 id="switching-branch-2">Switching branch</h2>
+<p>Lets get back to master</p>
+<p><strong>Example</strong></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> checkout master
+<span class="ex">vim</span> README.md <span class="co"># Adding information on how to play game.html</span>
+<span class="fu">git</span> commit -a</code></pre></div>
+<p><span class="next">Now we are in this situation</span></p>
+<figure>
+<img src="../images/2017-11-13-git/git_work_branch.gif" class="next" style="width:65.0%" />
+</figure>
+</section>
+<section id="merge-branches" class="slide level1">
+<h1>Merge branches</h1>
+<h2 id="git-merge">git merge</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> checkout [destination branch]
+<span class="fu">git</span> merge [branch to merge]
+<span class="fu">git</span> branch -d [merged branch] <span class="co"># Optional, to remove the old branch</span></code></pre></div>
+<p><strong>Example</strong></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> checkout master
+<span class="fu">git</span> merge french <span class="co"># We merge the to branches</span>
+<span class="fu">git</span> lola
+<span class="fu">git</span> branch -d french <span class="co"># We remove french branch</span>
+<span class="fu">git</span> lola</code></pre></div>
+<figure>
+<img src="../images/2017-11-13-git/git_merge.gif" class="next" style="width:65.0%" />
+</figure>
+</section>
+<section id="merge-branches-1" class="slide level1">
+<h1>Merge branches</h1>
+<h2 id="git-merge-1">git merge</h2>
+<figure>
+<img src="../images/2017-11-13-git/git_merge.gif" style="width:65.0%" />
+</figure>
+<ul>
+<li>While merging, you will create a commit that as to parents each branchs</li>
+<li>Describe the merge will committing it</li>
+</ul>
+</section>
+<section id="merge-branches-2" class="slide level1">
+<h1>Merge branches</h1>
+<h2 id="resolve-conflict">Resolve conflict</h2>
+<ul>
+<li>When merging if modification were made at the same place, conflict can occur</li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> checkout dev
+<span class="fu">git</span> checkout master
+<span class="fu">git</span> merge dev
+<span class="ex">CONFLICT</span> (content)<span class="bu">:</span> Merge conflict in src/game.html
+<span class="ex">Automatic</span> merge failed<span class="kw">;</span> <span class="ex">fix</span> conflicts and then commit the result.</code></pre></div>
+<p><span class="next"><em>- Noooooooooooo the world is ending !</em></span></p>
+<p><span class="next"><em>- Breath and calm down</em></span></p>
+</section>
+<section id="merge-branches-3" class="slide level1">
+<h1>Merge branches</h1>
+<h2 id="resolve-conflict-1">Resolve conflict</h2>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">cat</span> src/game.html</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode diff next"><code class="sourceCode diff">...
+
+
+<span class="st">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span>
+    myScore = new component(&quot;30px&quot;, &quot;Consolas&quot;, &quot;green&quot;, 280, 40, &quot;text&quot;);
+||||||| merged common ancestors
+    myScore = new component(&quot;30px&quot;, &quot;Consolas&quot;, &quot;black&quot;, 280, 40, &quot;text&quot;);
+<span class="kw">=======</span>
+    myScore = new component(&quot;40px&quot;, &quot;Comic Sans MS&quot;, &quot;red&quot;, 280, 40, &quot;text&quot;);
+<span class="va">&gt;&gt;&gt;&gt;&gt;&gt;&gt; dev</span>
+    myGameArea
+
+...</code></pre></div>
+<div class="next">
+<ol type="1">
+<li>Current branch (Where HEAD is)</li>
+<li>Common ancestor <em>amiota ?</em></li>
+<li>Branch dev
+</div></li>
+</ol>
+</section>
+<section id="merge-branches-4" class="slide level1">
+<h1>Merge branches</h1>
+<h2 id="resolve-conflict-2">Resolve conflict</h2>
+<h3 id="manually-resolve">Manually resolve</h3>
+<p>Keep only the interesting lines, removes the others</p>
+<p>including all the marks &lt;&lt;&lt;&lt;&lt;&lt;, ====== and &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</p>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">cat</span> src/game.html</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode diff next"><code class="sourceCode diff">...
+
+    myScore = new component(&quot;40px&quot;, &quot;Comic Sans MS&quot;, &quot;red&quot;, 280, 40, &quot;text&quot;);
+    myGameArea
+
+...</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> add src/game.html
+<span class="fu">git</span> merge --continue <span class="co"># Merge is done !</span>
+<span class="fu">git</span> lola</code></pre></div>
+</section>
+<section id="merge-branches-5" class="slide level1">
+<h1>Merge branches</h1>
+<h2 id="resolve-conflict-3">Resolve conflict</h2>
+<h3 id="use-mergetool">Use mergetool</h3>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> mergetool <span class="co"># Solve all the conflicts</span>
+<span class="fu">git</span> merge --continue <span class="co"># Merge is done !</span>
+<span class="fu">git</span> status
+<span class="fu">rm</span> src/game.html.orig <span class="co"># You can discard this backup file.</span></code></pre></div>
+</section>
+<section id="workflow-1" class="slide level1">
+<h1>Workflow</h1>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># I want to refactor all my code</span>
+$<span class="op">&gt;</span> <span class="fu">git</span> branch massive_refactor
+<span class="co"># Start working</span>
+$<span class="op">&gt;</span> <span class="fu">git</span> checkout massive_refactor
+
+<span class="co">## Modification and commits ##</span>
+<span class="co">## Bug fixing ##</span>
+<span class="co">## Everything works, lets merge to master##</span>
+
+<span class="co"># Going back to master</span>
+$<span class="op">&gt;</span> <span class="fu">git</span> checkout master
+<span class="co"># Merge with master</span>
+$<span class="op">&gt;</span> <span class="fu">git</span> merge massive_refactor
+
+<span class="co">## Correcting conflict on style.css ##</span>
+
+$<span class="op">&gt;</span> <span class="fu">git</span> add style.css
+<span class="co"># Finishing the merge.</span>
+$<span class="op">&gt;</span> <span class="fu">git</span> merge --continue</code></pre></div>
+</section>
+<section id="revert-a-file-with-committed-modification" class="slide level1">
+<h1>Revert a file with committed modification</h1>
+<p>I did something wrong ! I want to get my file back to a committed version !</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> lola <span class="co"># Find the version</span>
+<span class="fu">git</span> diff <span class="op">&lt;</span>version<span class="op">&gt;</span> <span class="co"># Verify the content </span>
+<span class="fu">git</span> checkout <span class="op">&lt;</span>version<span class="op">&gt;</span> <span class="op">&lt;</span>file/files<span class="op">&gt;</span> <span class="co"># don't forget the files !</span>
+<span class="fu">git</span> commit</code></pre></div>
+<p><strong>Unless you know what you are doing, if you want to revert, always use <code>git checkout</code> with a version and filenames, if you do otherwise, it will not do what you intended !</strong></p>
+</section>
+<section id="revert-a-file-with-committed-modification-1" class="slide level1">
+<h1>Revert a file with committed modification</h1>
+<p><strong>Example</strong></p>
+<ul>
+<li>Remove abritrary line in src/game.html</li>
+<li>commit the change with the message “Those line seemed to be useless, so i removed them”</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> lola <span class="co"># Find the number of the version just before your bad commit</span>
+<span class="fu">git</span> checkout <span class="op">&lt;</span>version<span class="op">&gt;</span> src/game.html 
+<span class="fu">git</span> status <span class="co"># The new version is in staging area</span>
+<span class="fu">git</span> commit </code></pre></div>
+</section>
+<section id="revert-commits" class="slide level1">
+<h1>Revert commits</h1>
+<p>You should check this link :</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> revert <span class="op">&lt;</span>version<span class="op">&gt;</span> <span class="co"># Revert only this commit</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> revert <span class="op">&lt;</span>version<span class="op">&gt;</span>..<span class="op">&lt;</span>version<span class="op">&gt;</span> <span class="co"># Revert this set of commits</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> revert HEAD^ <span class="co"># Revert parent commit</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> revert HEAD^^ <span class="co"># Revert grand parent commit</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> revert HEAD^^..HEAD^ <span class="co"># Revert grand parent and parent commit</span></code></pre></div>
+<p>Understanding ^ and ~ : <a href="https://stackoverflow.com/a/23714994/1042370" class="uri">https://stackoverflow.com/a/23714994/1042370</a></p>
+<p>In some case, you can also use reset, but it will not be explained here</p>
+</section>
+<section id="work-with-a-remote-repository" class="slide level1">
+<h1>Work with a remote repository</h1>
+<h2 id="why">Why</h2>
+<ul>
+<li>Share your work</li>
+<li>Collaborate</li>
+<li>Backup your repository in a secure location !</li>
+</ul>
+<h3 id="remote-repository-remote-branches">Remote repository == Remote branches</h3>
+<figure>
+<img src="../images/2017-11-13-git/remote-branches-1.png" style="width:55.0%" />
+</figure>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> branch --all <span class="co"># We can see remote branches on local repository!</span></code></pre></div>
+</section>
+<section id="work-with-a-remote-repository-1" class="slide level1">
+<h1>Work with a remote repository</h1>
+<h2 id="attach-my-project-to-a-remote-location">Attach my project to a remote location</h2>
+<ol type="1">
+<li><p>I ask git to link my repository to the distant one</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$<span class="op">&gt;</span> <span class="fu">git</span> remote add origin <span class="op">&lt;</span>remote repository<span class="op">&gt;</span></code></pre></div></li>
+<li><p>I send the data</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$<span class="op">&gt;</span> <span class="fu">git</span> push -u origin master</code></pre></div></li>
+</ol>
+<h2 id="start-working-on-a-remote-project"> Start working on a remote project</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> clone <span class="op">&lt;</span>remote project address<span class="op">&gt;</span>
+<span class="bu">cd</span> <span class="op">&lt;</span>projectname<span class="op">&gt;</span></code></pre></div>
+</section>
+<section id="work-with-a-remote-repository-2" class="slide level1">
+<h1>Work with a remote repository</h1>
+<h2 id="attach-my-project-to-a-remote-location-1">Attach my project to a remote location</h2>
+<ul>
+<li>Create a new repository on github</li>
+<li>Follow the instructions ! <img src="../images/2017-11-13-git/starting-project-github.png" style="width:90.0%" /></li>
+</ul>
+<p><strong>Example</strong> : Lets do so with <code>myoldproject</code></p>
+</section>
+<section id="work-with-remote" class="slide level1">
+<h1>Work with remote</h1>
+<h2 id="git-fetch">git fetch</h2>
+<p>Gether all remote repository updates</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> fetch</code></pre></div>
+<p><strong>Exemple</strong></p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> fetch
+<span class="ex">remote</span>: Counting objects: 85, done.
+<span class="ex">remote</span>: Compressing objects: 100% (84/84), <span class="kw">done</span><span class="ex">.</span>
+<span class="ex">remote</span>: Total 85 (delta 13), <span class="ex">reused</span> 0 (delta 0)
+<span class="ex">Unpacking</span> objects: 100% (85/85), <span class="kw">done</span><span class="ex">.</span>
+<span class="ex">From</span> bazfoo
+<span class="ex">0dff699..2642e08</span>  master     -<span class="op">&gt;</span> origin/master</code></pre></div>
+</section>
+<section id="work-with-remote-1" class="slide level1">
+<h1>Work with remote</h1>
+<h2 id="apply-remote-change-to-my-master-branch">Apply remote change to my master branch ?</h2>
+<div class="sourceCode"><pre class="sourceCode bash next"><code class="sourceCode bash"><span class="fu">git</span> checkout master <span class="co"># Make sur you are to the intended branch</span>
+<span class="fu">git</span> fetch
+<span class="fu">git</span> merge origin/master </code></pre></div>
+<p>The quicker way :</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> pull <span class="co"># Its done !</span></code></pre></div>
+<p>As usual you could have to merge conflict.</p>
+<p>Knowing that master and origin/master are virtually different but the same branch, you might want to avoid merge commit</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> pull --rebase</code></pre></div>
+<p><strong>Example</strong> : if I add a file on myremoteproject</p>
+</section>
+<section id="work-with-remote-2" class="slide level1">
+<h1>Work with remote</h1>
+<h2 id="send-my-work-online">Send my work online !</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> push</code></pre></div>
+<p>which mean <code>git pull</code> from remote server !</p>
+<p><strong>Note</strong> : To be able to push, your local branch must be up to date with the remote branch</p>
+<p>You should always</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> pull
+<span class="co"># Check everything is still working</span>
+<span class="fu">git</span> push</code></pre></div>
+<p><strong>Example</strong> : push on myremoteproject</p>
+</section>
+<section id="work-with-remote-3" class="slide level1">
+<h1>Work with remote</h1>
+<h2 id="workflow-2">Workflow</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">## Fork on github or create project</span>
+<span class="fu">git</span> clone <span class="op">&lt;</span>your project<span class="op">&gt;</span>
+
+<span class="fu">git</span> pull
+<span class="co">## Resolve conflict</span>
+<span class="fu">git</span> merge --continue
+<span class="co"># Check everything work</span>
+<span class="fu">git</span> push</code></pre></div>
+</section>
+<section id="work-with-remote-4" class="slide level1">
+<h1>Work with remote</h1>
+<h2 id="the-fork-model">The Fork model</h2>
+<p>Instead of all pushing on the same remote server, each user get a remote server and use merge(pull) request.</p>
+<ul>
+<li>Fork the project on github</li>
+<li>Make your modification as usual</li>
+<li>Update your fork with the main repository</li>
+<li>Push your modifications</li>
+<li>Make a pull / merge request on github</li>
+</ul>
+</section>
+<section id="work-with-remote-5" class="slide level1">
+<h1>Work with remote</h1>
+<h2 id="keep-your-fork-up-to-date">Keep your fork up to date</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> clone <span class="op">&lt;</span>address of your repo<span class="op">&gt;</span>
+<span class="bu">cd</span> <span class="op">&lt;</span>project<span class="op">&gt;</span>
+<span class="fu">git</span> remote add upstream <span class="op">&lt;</span>address of the original repo<span class="op">&gt;</span>
+<span class="fu">git</span> fetch upstream
+<span class="fu">git</span> pull upstream master
+<span class="fu">git</span> push</code></pre></div>
+</section>
+<section id="work-with-remote-6" class="slide level1">
+<h1>Work with remote</h1>
+<h2 id="fork-model-example">Fork model example</h2>
+<p>We discover that myremote project uses a fork model !</p>
+<ul>
+<li>Fork this project on git hub : <a href="https://github.com/lab-git-tutorial/myremoteproject">https://github.com/lab-git-tutorial/myremoteproject)</a></li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> myremoteproject
+<span class="fu">git</span> pull <span class="co"># We make sure we are up to date with origin</span>
+<span class="fu">git</span> remote rename origin upstream <span class="co"># You rename the actual origin, to make it our upstream</span>
+<span class="fu">git</span> remote add origin <span class="op">&lt;</span>my forked repos<span class="op">&gt;</span>
+<span class="fu">git</span> push -u origin master </code></pre></div>
+</section>
+<section id="go-further" class="slide level1">
+<h1>Go Further</h1>
+<h2 id="best-practices">Best Practices</h2>
+<ul>
+<li>Commit soon and often</li>
+<li>Never rewrite history (ex: <code>git push --force</code>) on a public repository : this is the only way to loose data</li>
+<li>Branch a lot</li>
+<li>Don’t commit big binary file : Every copy of the repository will have all versions of the file</li>
+<li>Don’t commit generated files</li>
+</ul>
+</section>
+<section id="go-further-1" class="slide level1">
+<h1>Go Further</h1>
+<h2 id="use-the-doc">Use the doc:</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> help [macommande]</code></pre></div>
+<ul>
+<li><a href="https://git-scm.com" class="uri">https://git-scm.com</a></li>
+</ul>
+<h2 id="modify-commits">Modify commits</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$<span class="op">&gt;</span> <span class="fu">git</span> rebase -i </code></pre></div>
+<h2 id="ignore-files">Ignore files</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$<span class="op">&gt;</span> <span class="bu">echo</span> <span class="st">'*.swp'</span> <span class="op">&gt;&gt;</span> .gitignore</code></pre></div>
+</section>
+<section id="questions" class="slide level1">
+<h1>Questions ?</h1>
+<h2 id="sources-inspirations">Sources / Inspirations</h2>
+<ul>
+<li>Git cookbook : https://git-scm.com</li>
+<li>Git for scientists : http://nyuccl.org/pages/gittutorial/</li>
+<li>Scott chacon presentation : https://speakerdeck.com/schacon/introduction-to-git</li>
+<li>About commit messages : https://who-t.blogspot.fr/2009/12/on-commit-messages.html</li>
+<li>In french with git https://www.miximum.fr/blog/enfin-comprendre-git/</li>
+<li>https://stackoverflow.com/questions/36237847/why-using-checkout-and-reset-naming-for-the-file-level-operations-in-git</li>
+<li>https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting</li>
+<li>https://git-scm.com/blog/2011/07/11/reset.html</li>
+<li>https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing</li>
+</ul>
+</section>
+
+    <div id="progress-bar">
+    </div>
+    <script src="../scripts/dzslides.js"></script> 
+      <script>
+        renderMathInElement(document.body);
+     </script>
+    <script src="../scripts/mermaid.min.js"></script>
+    <script src="../scripts/script.js"></script>
+</body>
+</html>
