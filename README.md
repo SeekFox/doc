@@ -1,6 +1,7 @@
 # Documents
 
 [Cahier des Charges](https://www.seekfox.team/doc/Partie%20I/doc/cahier%20des%20charges.pdf)
+[Dossier de Specification](https://www.seekfox.team/doc/Partie%20I/doc/Dossier%20de%20sp%C3%A9cifications%20V.2.pdf)  
 
 [Trello](https://trello.com/b/efDdpiIV/projet-fil-rouge-1a-sri-seekfox)
 
