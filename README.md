@@ -6,7 +6,7 @@
 [Documentation Partie 1](https://www.seekfox.team/documentation/Partie%201/html/)   
    
 ## Partie II
-[Cahier des Charges](https://www.seekfox.team/doc/Partie%20II/doc/cahier%20des%20charges.pdf)      
+[Cahier des Charges](https://www.seekfox.team/doc/Partie%20II/doc/Cahier%20des%20charges%202.pdf)      
 
 
 ## Divers
